@@ -1,0 +1,57 @@
+Notes up front:
+
+- this is just a collection of initial ideas for how the project might be implemented technically
+- of course, I don’t yet know whether the code will actually work because we don’t know the exact oscilloscope model yet, and haven’t tested with real data
+- however, the simulation using test data worked well, so the basic logic seems solid
+- I thought having a rough structure like this might help as a starting point for the project, so we can build on it together later
+
+
+
+What does the code do?
+
+- this script is meant to analyse signals from a LINAC and determine the exact moment when the radiation beam turns off and the LINAC system shuts down
+- it then compares these two times and calculates the delay (Δt) between them
+
+
+
+Step-by-step explanation:
+ 
+
+1. Setup and configuration:
+-> which channels the oscilloscope will use to read the beam signal (CH1) and system signal (CH2)
+-> how many data points we want to collect (2500, random number atm)
+-> the voltage threshold (2.5 V, random number atm) used to detect when a signal drops and something turns off
+
+
+2. Detect the shutoff time
+-> the code looks through each signal and finds the first moment when the voltage drops below 2.5 volts
+-> this moment is called the falling edge
+-> the code records the timestamp (in microseconds, random unit atm) when the beam turns off and when the system turns off
+
+
+3. Calculate the time difference
+-> it subtracts the two times to find how long after the beam shut off the system shut down
+-> this delay (Δt) is shown in microseconds (again, random unit atm)
+
+
+4. Plot the results
+-> it creates a graph showing both signals over time
+-> it marks the moment each signal drops (beam-off and system-off) with a dashed vertical line
+-> the graph helps visualize the timing and verify that the delay is correct
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
